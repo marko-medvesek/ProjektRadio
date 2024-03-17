@@ -1,6 +1,6 @@
 # Viri
 https://stackoverflow.com/questions/2068344/how-do-i-get-a-youtube-video-thumbnail-from-the-youtube-api<br>
-=> https://img.youtube.com/vi/<youtube id>/maxresdefault.jpg<br>
+=> https://img.youtube.com/vi/{youtube id}/maxresdefault.jpg<br>
 => https://www.googleapis.com/youtube/v3/videos?part=snippet&id=viTJ2HxWFCg&key=AIzaSyDwEqiktbQNW295zLxA0ItlZEzlJfuZZro<br>
 
 https://flask.palletsprojects.com/en/2.3.x/quickstart/<br>
