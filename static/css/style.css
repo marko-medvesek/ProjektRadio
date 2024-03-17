@@ -1,0 +1,28 @@
+.rezultat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.title span{
+    display: flex;
+
+}
+.info {
+    display: flex;
+}
+
+.info i{
+    display: flex;
+    padding-left: 15px;
+}
+
+.thumbnail img {
+    margin-left:2%;
+    float:left; 
+    height:4.5em;
+    width:8em;
+}
+
+hr {
+    margin: 10px;
+}

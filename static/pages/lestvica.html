@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/static/css/style-lestvica.css">
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+  <main>
+    <div id="header">
+      <h1>Lestvica</h1>
+    </div>
+    {% if data %}
+    <div id="leaderboard">
+      <table>
+        {% for item in data %}
+        <tr id="{{item['id']}}">
+          <td class="thumbnail">
+            <img src="{{item['thumbnail']}}" alt="thumbnail">
+          </td>
+          <td class="naslov">{{item['title']}} <br><sub>{{item['date']}}</sub></td>
+          <td class="vsecki">
+            <button class="button-57" role="button" onclick="vsecek('{{item['id']}}');"><span class="text"><svg
+                  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24">
+                  <path
+                    d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z" />
+                </svg></span><span>{{item['vsecki']}}</span></button>
+          </td>
+        </tr>
+
+        {% endfor %}
+      </table>
+
+      {% else %}
+      <h1>Ni podatkov!</h1>
+      {% endif %}
+
+    </div>
+  </main>
+
+  <!-- NAVBAR -->
+  <div class="stickyBottomNav" align="center">
+    <div class="navbar">
+      <ul>
+        <li class="active">
+          <a href="/">
+            <i class='bx bx-home icon'></i>
+            <i class='bx bxs-home activeIcon'></i>
+          </a>
+        </li>
+        <li>
+          <!--<a href="#">
+          <span class="activeIcon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" width="38"><path d="M160-80q-33 0-56.5-23.5T80-160v-400q0-33 23.5-56.5T160-640h640q33 0 56.5 23.5T880-560v400q0 33-23.5 56.5T800-80H160Zm0-80h640v-400H160v400Zm240-40 240-160-240-160v320ZM160-680v-80h640v80H160Zm120-120v-80h400v80H280ZM160-160v-400 400Z"/></svg>
+          </span>
+
+        </a>
+      </li> -->
+        <li>
+          <a href="/404.html">
+
+            <i class='bx bxs-playlist icon'></i>
+            <i class='bx bxs-playlist activeIcon'></i>
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <i class='bx bx-server icon'></i>
+            <i class='bx bxs-server activeIcon'></i>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <i class='bx bx-cog icon'></i>
+            <i class='bx bxs-cog activeIcon'></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const navBar = document.querySelector(".navbar")
+    allLi = document.querySelectorAll("li");
+
+    allLi.forEach((li, index) => {
+      li.addEventListener("click", e => {
+        e.preventDefault(); //preventing from submitting
+        navBar.querySelector(".active").classList.remove("active");
+        li.classList.add("active");
+        if (e['target'].className.includes('playlist')) {
+          window.location.href = '/prikaz'
+        }
+        if (e['target'].className.includes('server')) {
+          window.location.href = '/seznam'
+        }
+      });
+    });
+
+  </script>
+  <script src="/static/js/lestvica.js"></script>
+</body>
+
+</html>

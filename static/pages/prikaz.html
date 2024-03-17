@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>Projekt</title>
     <style>
         * {
             margin: 1px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }   
+        }
     </style>
-    
+
 </head>
+
 <body>
     <h1>Prikaz</h1>
     <label for="url">URL:</label>
-    <input type="text" id="url" name="url"><button  onclick="poslji()">Pošlji</button>
+    <input type="text" id="url" name="url" placeholder="Vnesi URL pesmi tukaj...">
+    <button onclick="poslji()">Pošlji</button>
+    <button onclick="ponastavi()">CLS</button>
     <br>
     <br>
-{% if data %}
+    {% if data %}
     {% for item in data %}
-    <div id="{{item['id']}}">
-        <img src="{{item['thumbnail']}}" alt="" height="auto" width="25%">    
-        <p><b>{{item['title']}}</b></p>
-        <i>{{item['description']}}</i>
-        <hr style="background-color: gray;width:30%;height: 1px;">
+    <div id="{{item['id']}}" class="prikaz">
+        <div class="thumbnail">
+            <img src="{{item['thumbnail']}}" alt="thumbnail">
+        </div>
+        <div class="info">
+            <span class="title">
+                <p><b>{{item['title']}}</b><br><sup>{{item['date']}}</sup><br>{{item['vsecki']}}</p>
+            </span>
+            <button onclick="vsecek('{{item['id']}}');"> <svg xmlns="http://www.w3.org/2000/svg" height="24"
+                    viewBox="0 -960 960 960" width="24">
+                    <path
+                        d="M720-120H280v-520l280-280 50 50q7 7 11.5 19t4.5 23v14l-44 174h258q32 0 56 24t24 56v80q0 7-2 15t-4 15L794-168q-9 20-30 34t-44 14Zm-360-80h360l120-280v-80H480l54-220-174 174v406Zm0-406v406-406Zm-80-34v80H160v360h120v80H80v-520h200Z" />
+                </svg>
+            </button>
+            <!-- <i>{{ item['description'][:200] + (item['description'][200:] and '...')}}</i> -->
+        </div>
     </div>
-    {% endfor %}   
-{% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+    <hr style="background-color: gray;">
+    {% endfor %}
+    {% else %}
+    <h1>Ni podatkov!</h1>
+    {% endif %}
 
     <script>
-        function poslji(){
+        function poslji() {
             povezava = document.getElementById('url').value
             console.log(povezava);
             post()
         }
-        async function post(url = '/incomes' , data = { url: povezava}) {
+        async function post(url = '/seznam', data = { url: povezava }) {
             // Default options are marked with *
             console.log(data);
             const response = await fetch(url, {
@@ -46,8 +63,8 @@
                 cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
                 credentials: 'same-origin', // include, *same-origin, omit
                 headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
                 },
                 redirect: 'follow', // manual, *follow, error
                 referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
@@ -55,6 +72,32 @@
             });
             location.reload()
         }
+        async function ponastavi(url = '/seznam/cls') {
+            // Default options are marked with *
+            const response = await fetch(url, { method: 'POST' });
+            location.reload()
+        }
+        async function vsecek(id, url = '/seznam/like') {
+            data = { 'id': id }
+            // Default options are marked with *
+            console.log(id);
+            const response = await fetch(url, {
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            location.reload()
+
+        }
     </script>
 </body>
+
 </html>

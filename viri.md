@@ -17,6 +17,21 @@ https://stackoverflow.com/questions/70321014/runtimeerror-install-flask-with-the
 https://stackoverflow.com/questions/49442444/add-one-property-to-json-in-python
 https://stackoverflow.com/questions/5074803/retrieving-parameters-from-a-url
 https://pynative.com/python-check-if-key-exists-in-json-and-iterate-the-json-array/
+https://www.programiz.com/python-programming/datetime/strptime
+https://www.programiz.com/python-programming/datetime/strftime
+https://www.tutorialspoint.com/How-to-get-formatted-date-and-time-in-Python
+https://www.tutorialspoint.com/How-to-convert-Python-date-to-Unix-timestamp
+https://stackoverflow.com/questions/403421/how-do-i-sort-a-list-of-objects-based-on-an-attribute-of-the-objects
+
+### Flask:
+https://stackoverflow.com/questions/12096522/pass-variables-to-flasks-render-template
+https://stackoverflow.com/questions/20646822/how-to-serve-static-files-in-flask
+https://stackoverflow.com/questions/9508667/reload-flask-app-when-template-file-changes
+https://flask.palletsprojects.com/en/2.3.x/config/#TEMPLATES_AUTO_RELOAD
+https://flask.palletsprojects.com/en/3.0.x/config/
+
+### CSS:
+https://teamtreehouse.com/community/how-do-i-target-an-element-inside-a-class-in-css
 
 ### To-do:
 https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
