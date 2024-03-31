@@ -55,16 +55,17 @@ async def add_income():
         print(id)
         params["id"] = id
         await getInfo(id)
-        return "be", 201
+        return Response("Success!", status=201, mimetype="application/json")
     if "https://www.youtube.com/" or "https://youtube.com/" in params["url"]:
+        print(params["url"])
         parsed_url = urlparse(params["url"])
         id = parse_qs(parsed_url.query)["v"][0]
         params["id"] = id
         await getInfo(id)
-        return "com", 201
+        return Response("Success!", status=201, mimetype="application/json")
     else:
         print(params["url"])
-        return request.get_json(), 406  # Not acceptable - sprejema samo youtube linke
+        return Response("Wrong URL format!", status=406, mimetype="application/json")  # Not acceptable - sprejema samo youtube linke
 
 
 def getSeznam():
